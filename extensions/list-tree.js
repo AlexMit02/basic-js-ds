@@ -9,3 +9,6 @@ class Node {
 module.exports = {
   Node
 };
+
+const list = new Node(3)
+console.log(list);
