@@ -44,19 +44,13 @@ class BinarySearchTree {
      }
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-  }
-
-  find(data) 
-  {
+  has(data) {
     if (!this.rootNode) return null;
     let current = this.rootNode;
     const rnLoop = true;
     while (rnLoop) {
-      if (!current) return null;
-      if (data === current.data) return current;
+      if (!current) return false;
+      if (data === current.data) return true;
       if (data < current.data) {
         current = current.left;
       } else {
@@ -64,21 +58,59 @@ class BinarySearchTree {
       }
     }
   }
+
+  find(data) 
+  {
+    if (!this.rootNode) return null;
+    let current = this.rootNode;
+    while (true) {
+      if (data != current) return null;
+      if (data === current.data) return current;
+      if (data < current.data) {
+        current = current.left;
+        // return current;
+      } else {
+        current = current.right; 
+        // return current;
+      }
+    }
+  }
   
  
-  remove(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  remove(val, node = this.rootNode) {
+    if (!node) {
+      return null;
+    }
+
+    if (val < node.data) {
+      node.left = this.remove(val, node.left);
+    } else if (val > node.data) {
+      node.right = this.remove(val, node.right);
+    } else {
+      if (!node.left) {
+        return node.right;
+      } else if (!node.right) {
+        return node.left;
+      } else {
+        node.data = this.min(node.right);
+        node.right = this.remove(node.data, node.right);
+      }
+    }
+    return node;
   }
 
-  min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  min(node = this.rootNode) {
+    while (node.left) {
+      node = node.left;
+    }
+    return node.data;
   }
 
-  max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  max(node = this.rootNode) {
+    if (node.right === null) {
+      return node.value;
+    }
+    return this.max(node.right);
   }
 }
 
