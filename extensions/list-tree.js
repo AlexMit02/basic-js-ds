@@ -10,5 +10,5 @@ module.exports = {
   Node
 };
 
-const list = new Node(3)
-console.log(list);
+// const list = new Node(3)
+// console.log(list);

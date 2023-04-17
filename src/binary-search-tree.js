@@ -15,13 +15,31 @@ class BinarySearchTree {
 
   add(data) {
      if (this.rootNode === null){
-        this.rootNode === new Node (data);
-      
+     
+        this.rootNode = new Node(data);
      } else {
         let current = this.rootNode;
-        while (true) {
-          
+       while (true) { 
+          if (data > current.data) {
+            if (current.right === null) {
+                current.right === new Node (data);
+                break;
+            } else {
+
+              current = current.right;
+            }
+          } else if (data < current.data) {
+              if (current.left === null) {
+                current.left = new Node(data);
+                break;
+              } else {
+                current = current.left;
+              }
+
+          }
+
         }
+
 
      }
   }
@@ -57,4 +75,5 @@ module.exports = {
 
 const tree = new BinarySearchTree()
 console.log(tree)
-console.log("111", tree.root())
+tree.add(9);
+console.log(JSON.stringify(tree))
