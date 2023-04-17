@@ -49,10 +49,23 @@ class BinarySearchTree {
     // remove line with error and write your code here
   }
 
-  find(/* data */) {
-    console.log("55")
+  find(data) 
+  {
+    if (!this.rootNode) return null;
+    let current = this.rootNode;
+    const rnLoop = true;
+    while (rnLoop) {
+      if (!current) return null;
+      if (data === current.data) return current;
+      if (data < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
   }
-
+  
+ 
   remove(/* data */) {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
